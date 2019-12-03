@@ -1,0 +1,29 @@
+{
+  "name": "nodescrape",
+  "version": "0.0.1",
+  "description": "NodeJs web crawler",
+  "main": "./dist/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "package.json"
+  ],
+  "author": "wjdavis5",
+  "license": "ISC",
+  "dependencies": {
+    "@types/cheerio": "^0.22.14",
+    "@types/node": "^12.12.14",
+    "@types/request-promise": "^4.1.45",
+    "chai": "^4.2.0",
+    "cheerio": "^1.0.0-rc.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "sinon": "^7.5.0"
+  }
+}
