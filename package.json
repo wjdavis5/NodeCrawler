@@ -24,6 +24,7 @@
     "cheerio": "^1.0.0-rc.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
-    "sinon": "^7.5.0"
+    "sinon": "^7.5.0",
+    "sleep-promise": "^8.0.1"
   }
 }
