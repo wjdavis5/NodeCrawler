@@ -19,12 +19,15 @@
   "dependencies": {
     "@types/cheerio": "^0.22.14",
     "@types/node": "^12.12.14",
+    "@types/redis": "^2.8.14",
     "@types/request-promise": "^4.1.45",
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.3",
+    "redis": "^2.8.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.5",
     "sinon": "^7.5.0",
-    "sleep-promise": "^8.0.1"
+    "sleep-promise": "^8.0.1",
+    "util": "^0.12.1"
   }
 }

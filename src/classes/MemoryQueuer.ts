@@ -11,10 +11,11 @@ export class MemoryQueuer implements ISiteQueuer{
         this.memoryQueue.push(uri);
     }
 
-    dequeue(): string {
+    dequeue(): Promise<string> {
         let uri: string = this.memoryQueue.pop();
         console.debug("DeQueue uri: " + uri);
-        return uri;
+        return new Promise<string>(() => {return uri;});
     }
 
 }
+
