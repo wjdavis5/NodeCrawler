@@ -1,7 +1,6 @@
 interface ISiteQueuer{
-    queue(uri: string);
-    dequeue(): Promise<string>;
-    
+    queue(uri: IPage);
+    dequeue(): Promise<IPage>;
 }
 
 

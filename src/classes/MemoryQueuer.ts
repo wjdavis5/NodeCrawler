@@ -1,20 +1,20 @@
 export class MemoryQueuer implements ISiteQueuer{
     
-    private memoryQueue: Array<string>
+    private memoryQueue: Array<IPage>
 
     constructor(){
-        this.memoryQueue = new Array<string>();
+        this.memoryQueue = new Array<IPage>();
     }
     
-    queue(uri: string) {
+    queue(uri: IPage) {
         console.debug("Queuing url: "+ uri);
         this.memoryQueue.push(uri);
     }
 
-    dequeue(): Promise<string> {
-        let uri: string = this.memoryQueue.pop();
+    dequeue(): Promise<IPage> {
+        let uri: IPage = this.memoryQueue.pop();
         console.debug("DeQueue uri: " + uri);
-        return new Promise<string>(() => {return uri;});
+        return new Promise<IPage>(() => {return uri;});
     }
 
 }
