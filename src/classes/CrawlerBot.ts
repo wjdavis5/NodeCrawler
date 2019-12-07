@@ -4,15 +4,26 @@ export class CrawlerBot implements ICrawlerBot{
     
     private keepCrawlin: boolean;
     private memoryQueue: ISiteQueuer;
-    private webCrawler: ISiteCrawler;
+    private webCrawlerFactory: ICrawlerFactory;
     private consecutiveEmptyDequeue: number = 0;
+    private numberOfCrawlers: number = 0;
+    private instanceHolder: Array<ISiteCrawler>;
 
-    constructor(memoryQueue: ISiteQueuer, webCrawler: ISiteCrawler){
+    constructor(memoryQueue: ISiteQueuer, webCrawlerFactory: ICrawlerFactory, numberOfCrawlers: number){
         this.memoryQueue = memoryQueue;
-        this.webCrawler = webCrawler;
+        this.webCrawlerFactory = webCrawlerFactory;
+        this.numberOfCrawlers = numberOfCrawlers;
+        this.instanceHolder = new Array<ISiteCrawler>();
+    }
+
+    private populateCrawlers(){
+        while(this.instanceHolder.length < this.numberOfCrawlers){
+            this.instanceHolder.push(this.webCrawlerFactory.GetCrawler(this.memoryQueue));
+        }
     }
     
     public async StartCrawl() {
+        this.populateCrawlers();
         this.keepCrawlin = true;
         while(this.keepCrawlin){
             let nextPage = await this.memoryQueue.dequeue();
@@ -22,7 +33,9 @@ export class CrawlerBot implements ICrawlerBot{
                 continue;
             }
             this.consecutiveEmptyDequeue = 0;
-            await this.webCrawler.crawl(nextPage);
+            let currentCrawler = this.instanceHolder.pop();
+            this.instanceHolder.unshift(currentCrawler);
+            await currentCrawler.crawl(nextPage);
             }
     }
 
